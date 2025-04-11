@@ -1,0 +1,24 @@
+
+{% extends "base.html" %}
+{% block title %}Impact Visualization{% endblock %}
+{% block content %}
+<h2>Policy Impact</h2>
+<div class="row">
+  <div class="col-md-6">
+    <canvas id="ageChart"></canvas>
+  </div>
+  <div class="col-md-6">
+    <canvas id="neighborhoodChart"></canvas>
+  </div>
+</div>
+<script>
+fetch('/visualization/data')
+  .then(res => res.json())
+  .then(data => {
+    const ageCtx = document.getElementById('ageChart').getContext('2d');
+    new Chart(ageCtx, { type: 'bar', data: { labels: Object.keys(data.age_groups), datasets: [{ label: 'Impact', data: Object.values(data.age_groups), backgroundColor: 'rgba(54, 162, 235, 0.5)' }] } });
+    const nbCtx = document.getElementById('neighborhoodChart').getContext('2d');
+    new Chart(nbCtx, { type: 'bar', data: { labels: Object.keys(data.neighborhoods), datasets: [{ label: 'Impact', data: Object.values(data.neighborhoods), backgroundColor: 'rgba(255, 99, 132, 0.5)' }] } });
+  });
+</script>
+{% endblock %}

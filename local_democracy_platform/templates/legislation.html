@@ -1,0 +1,22 @@
+
+{% extends "base.html" %}
+{% block title %}Legislation Summary{% endblock %}
+{% block content %}
+<div class="card">
+  <div class="card-body">
+    <h2 class="card-title">Plain Language Legislation Summary</h2>
+    <form method="post">
+      <div class="mb-3">
+        <textarea class="form-control" name="text" rows="5">{{ text or '' }}</textarea>
+      </div>
+      <button class="btn btn-primary">Summarize</button>
+    </form>
+    {% if summary %}
+    <hr>
+    <h4>Summary:</h4>
+    <p>{{ summary }}</p>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}
+

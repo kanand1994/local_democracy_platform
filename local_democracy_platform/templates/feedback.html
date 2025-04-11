@@ -1,0 +1,35 @@
+
+{% extends "base.html" %}
+{% block title %}Feedback{% endblock %}
+{% block content %}
+<div class="row">
+  <div class="col-md-6">
+    <div class="card mb-4">
+      <div class="card-body">
+        <h3>Submit Feedback</h3>
+        <form method="post">
+          <div class="mb-2">
+            <input class="form-control" type="number" name="user_id" placeholder="User ID" required>
+          </div>
+          <div class="mb-2">
+            <input class="form-control" type="number" name="representative_id" placeholder="Representative ID" required>
+          </div>
+          <div class="mb-3">
+            <textarea class="form-control" name="message" rows="3" placeholder="Your message"></textarea>
+          </div>
+          <button class="btn btn-success">Submit</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <h3>Your Feedback</h3>
+    <ul class="list-group">
+      {% for fb in responses %}
+      <li class="list-group-item">{{ fb.message }} <span class="badge bg-secondary">{{ fb.response or 'Pending' }}</span></li>
+      {% endfor %}
+    </ul>
+  </div>
+</div>
+{% endblock %}
+

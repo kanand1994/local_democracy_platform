@@ -1,0 +1,24 @@
+
+{% extends "base.html" %}
+{% block title %}Organizing Tools{% endblock %}
+{% block content %}
+<div class="card mb-4">
+  <div class="card-body">
+    <h3>Create Initiative</h3>
+    <form method="post">
+      <div class="mb-2"><input class="form-control" name="name" placeholder="Name"></div>
+      <div class="mb-2"><textarea class="form-control" name="description" placeholder="Description"></textarea></div>
+      <div class="mb-2"><input class="form-control" name="neighborhood" placeholder="Neighborhood"></div>
+      <button class="btn btn-primary">Create</button>
+    </form>
+  </div>
+</div>
+<div>
+  <h3>Existing Initiatives</h3>
+  <ul class="list-group">
+    {% for init in initiatives %}
+    <li class="list-group-item"><strong>{{ init.name }}</strong> ({{ init.neighborhood }}): {{ init.description }}</li>
+    {% endfor %}
+  </ul>
+</div>
+{% endblock %}
